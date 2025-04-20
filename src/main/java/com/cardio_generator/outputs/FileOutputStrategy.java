@@ -11,7 +11,7 @@ public class FileOutputStrategy implements OutputStrategy { //5.2.2 Class Name: 
 
     private String baseDirectory; //5.2.5 Non constant field name: should be written in lowerCamelCase hence changed
 
-    private static final ConcurrentHashMap<String, String> FILE_MAP = new ConcurrentHashMap<>(); //5.2.4 Constant Name: constant names are written in UPPER_SNAKE_CASE and must be final and static hence changed
+    public static final ConcurrentHashMap<String, String> FILE_MAP = new ConcurrentHashMap<>(); //5.2.4 Constant Name: constant names are written in UPPER_SNAKE_CASE and must be final and static hence changed
 
     public FileOutputStrategy(String baseDirectory) {//Constructor must always match the correct class name declaration hence changed
 
