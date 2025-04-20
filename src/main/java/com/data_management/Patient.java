@@ -53,5 +53,8 @@ public class Patient {
      */
     public List<PatientRecord> getRecords(long startTime, long endTime) {
         // TODO Implement and test this method
+        return patientRecords.stream()
+                .filter(record -> record.getTimestamp() >= startTime && record.getTimestamp() <= endTime)
+                .toList();
     }
 }
