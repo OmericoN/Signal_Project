@@ -7,7 +7,7 @@ import com.cardio_generator.outputs.OutputStrategy;
 
 public class AlertGenerator implements PatientDataGenerator {
 
-    private static final Logger logger = Logger.getLogger(AlertGenerator.class.getName()); // 5.2.1 Class names must be nouns hence changed
+    private static final Logger LOGGER = Logger.getLogger(AlertGenerator.class.getName()); // 5.2.4 Constant field names must have UPPER_SNAME_CASE hence changed names must be nouns hence changed
     public static final Random RANDOM_GENERATOR = new Random(); // 5.2.4 Constant field names must have UPPER_SNAME_CASE hence changed
     private boolean[] alertStates; // false = resolved, true = pressed
     //5.2.5 Non Constant filed name: must be lowerCamelCase hence changed
@@ -38,7 +38,7 @@ public class AlertGenerator implements PatientDataGenerator {
                 }
             }
         } catch (Exception e) {
-            logger.severe("An error occurred while generating alert data for patient " + patientId); //6.2 caught excepetions: using logging is the better practice hence changed
+            LOGGER.severe("An error occurred while generating alert data for patient " + patientId); //6.2 caught excepetions: using logging is the better practice hence changed
         }
     }
 }
