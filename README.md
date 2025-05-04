@@ -63,7 +63,7 @@ java -jar target/cardio_generator-1.0-SNAPSHOT.jar --patient-count 100 --output 
 - `tcp:<port>`: Streams the simulated data to TCP clients connected to the specified port.
 
 # UML Diagrams
-![UML Diagrams](signal_project/uml_models/uml_4systems_diagram.pdf)
+![UML Diagrams](uml_models/uml_4systems_diagram.pdf)
 ## Sub-System 1: Alert Generation System
 ## Sub-System 2: Data Storage System
 ## Sub-System 3: Patient Identification System
