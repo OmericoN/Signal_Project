@@ -52,9 +52,13 @@ public class Patient {
      *         range
      */
     public List<PatientRecord> getRecords(long startTime, long endTime) {
-        // TODO Implement and test this method
-        return patientRecords.stream()
-                .filter(record -> record.getTimestamp() >= startTime && record.getTimestamp() <= endTime)
-                .toList();
+        ArrayList<PatientRecord> intervalPatientRecords = new ArrayList<>();
+        for(int i =0  ; i<patientRecords.size() ; i++){
+            long timeStamp = patientRecords.get(i).getTimestamp();
+            if(timeStamp >= startTime && timeStamp <= endTime){
+                intervalPatientRecords.add(patientRecords.get(i));
+            }
+        }
+        return intervalPatientRecords;
     }
 }
