@@ -29,28 +29,47 @@ import com.cardio_generator.outputs.WebSocketOutputStrategy;
  */
 public class HealthDataSimulator {
 
-    private static int patientCount = 50; // Default number of patients
-    private static ScheduledExecutorService scheduler;
-    private static OutputStrategy outputStrategy = new ConsoleOutputStrategy(); // Default output strategy
+    private int patientCount = 50; // Default number of patients
+    private ScheduledExecutorService scheduler;
+    private OutputStrategy outputStrategy = new ConsoleOutputStrategy(); // Default output strategy
     private static final Random random = new Random();
-
-    /**
-     * Main method. Parses arguments, initializes scheduler, and starts data generation tasks.
-     * 
-     * @param args Command-line arguments for configuration.
-     * @throws IOException if output directory creation fails.
-     */
-    public static void main(String[] args) throws IOException {
-
+    private static HealthDataSimulator instance;
+    private HealthDataSimulator(String args[]) throws IOException{
         parseArguments(args);
-
-        scheduler = Executors.newScheduledThreadPool(patientCount * 4);
+        this.scheduler = Executors.newScheduledThreadPool(this.patientCount * 4);
+        this.outputStrategy = new ConsoleOutputStrategy();
 
         List<Integer> patientIds = initializePatientIds(patientCount);
         Collections.shuffle(patientIds); // Randomize the order of patient IDs
 
         scheduleTasksForPatients(patientIds);
     }
+
+    public static HealthDataSimulator getInstance(String[] args) throws IOException{
+        if (instance == null){
+            instance = new HealthDataSimulator(args);
+        }
+        return instance;
+    }
+    /**
+     * Main method. Parses arguments, initializes scheduler, and starts data generation tasks.
+     * 
+     * @param args Command-line arguments for configuration.
+     * @throws IOException if output directory creation fails.
+     */
+
+    //Method no longer used after Singleton Implementation
+    // public static void main(String[] args) throws IOException {
+
+    //     parseArguments(args);
+
+    //     scheduler = Executors.newScheduledThreadPool(patientCount * 4);
+
+    //     List<Integer> patientIds = initializePatientIds(patientCount);
+    //     Collections.shuffle(patientIds); // Randomize the order of patient IDs
+
+    //     scheduleTasksForPatients(patientIds);
+    // }
 
     /**
      * Parses command-line arguments to set patient count and output strategy.
@@ -59,7 +78,7 @@ public class HealthDataSimulator {
      * @param args Command-line arguments.
      * @throws IOException if output directory creation fails.
      */
-    private static void parseArguments(String[] args) throws IOException {
+    private void parseArguments(String[] args) throws IOException {
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
                 case "-h":
@@ -146,7 +165,7 @@ public class HealthDataSimulator {
      * @param patientCount The number of patients.
      * @return List of patient IDs.
      */
-    private static List<Integer> initializePatientIds(int patientCount) {
+    private List<Integer> initializePatientIds(int patientCount) {
         List<Integer> patientIds = new ArrayList<>();
         for (int i = 1; i <= patientCount; i++) {
             patientIds.add(i);
@@ -160,7 +179,7 @@ public class HealthDataSimulator {
      *
      * @param patientIds List of patient IDs to schedule tasks for.
      */
-    private static void scheduleTasksForPatients(List<Integer> patientIds) {
+    private void scheduleTasksForPatients(List<Integer> patientIds) {
         ECGDataGenerator ecgDataGenerator = new ECGDataGenerator(patientCount);
         BloodSaturationDataGenerator bloodSaturationDataGenerator = new BloodSaturationDataGenerator(patientCount);
         BloodPressureDataGenerator bloodPressureDataGenerator = new BloodPressureDataGenerator(patientCount);
@@ -183,7 +202,7 @@ public class HealthDataSimulator {
      * @param period The period between successive executions.
      * @param timeUnit The time unit of the period parameter.
      */
-    private static void scheduleTask(Runnable task, long period, TimeUnit timeUnit) {
+    private void scheduleTask(Runnable task, long period, TimeUnit timeUnit) {
         scheduler.scheduleAtFixedRate(task, random.nextInt(5), period, timeUnit);
     }
 }

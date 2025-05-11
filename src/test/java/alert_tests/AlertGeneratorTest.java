@@ -1,4 +1,4 @@
-package data_management;
+package alert_tests;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -11,7 +11,7 @@ import com.alerts.AlertGenerator;
 import com.data_management.DataStorage;
 import com.data_management.Patient;
 
-public class AlertGeneratorTest {
+public class AlertGeneratorTest { //This Test also assesses the AlertStrategies since the AlertGenerator was modified to utilize these strategies
     private static final long CURRENT_TIME = System.currentTimeMillis();
     private AlertGenerator alertGenerator;
     private DataStorage dataStorage;
@@ -19,7 +19,8 @@ public class AlertGeneratorTest {
 
     @BeforeEach
     public void setUp() {
-        dataStorage = new DataStorage();
+        //dataStorage = new DataStorage();     //No longer used because of singleton design pattern
+        DataStorage dataStorage = DataStorage.getInstance();
         alertGenerator = new AlertGenerator(dataStorage);
         testPatient = new Patient(1);
     }

@@ -6,10 +6,10 @@ import com.data_management.DataStorage;
 public class Main {
     public static void main(String[] args) {
         if (args.length > 0 && args[0].equals("DataStorage")) {
-            DataStorage.main(new String[]{});
+            DataStorage.getInstance();
         } else {
             try{
-                HealthDataSimulator.main(new String[]{});
+                HealthDataSimulator.getInstance(args);
             } catch (IOException e){
                 throw new RuntimeException(e);
             }

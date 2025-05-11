@@ -16,7 +16,8 @@ class DataStorageTest {
     void testAddAndGetRecords() {
         // TODO Perhaps you can implement a mock data reader to mock the test data?
         // DataReader reader
-        DataStorage storage = new DataStorage();
+        // DataStorage storage = new DataStorage();   // No longer used because of singleton design pattern
+        DataStorage storage = DataStorage.getInstance();
         storage.addPatientData(1, 100.0, "WhiteBloodCells", 1714376789050L);
         storage.addPatientData(1, 200.0, "WhiteBloodCells", 1714376789051L);
     
@@ -27,7 +28,8 @@ class DataStorageTest {
 
     @Test
     void testAddAndRetrieveMultiplePatients(){
-        DataStorage storage = new DataStorage();
+        // DataStorage storage = new DataStorage();   // No longer used because of singleton design pattern
+        DataStorage storage = DataStorage.getInstance();
         long now = System.currentTimeMillis();
         
         storage.addPatientData(1, 120.0, "SystolicPressure", now - 1000);
@@ -43,7 +45,8 @@ class DataStorageTest {
 
     @Test
     void testRetrieveDataForNonExisting(){
-        DataStorage storage = new DataStorage();
+        // DataStorage storage = new DataStorage();   // No longer used because of singleton design pattern
+        DataStorage storage = DataStorage.getInstance();
         List<PatientRecord> nonExistentPatientRecords = storage.getRecords(999, 0L, 1000L);
         assertEquals(0, nonExistentPatientRecords.size());
     }
@@ -58,7 +61,8 @@ class DataStorageTest {
                 storage.addPatientData(1, 80.0, "DiastolicPressure", 1100L);
             }
         };
-        DataStorage storage = new DataStorage();
+        // DataStorage storage = new DataStorage();   // No longer used because of singleton design pattern
+        DataStorage storage = DataStorage.getInstance();
         try {
             mockReader.readData(storage);
         } catch (IOException e) {
