@@ -50,6 +50,14 @@ public class DataStorage {
             patient = new Patient(patientId);
             patientMap.put(patientId, patient);
         }
+        List<PatientRecord> existingRecords = patient.getRecords(timestamp, timestamp);
+        for (PatientRecord r : existingRecords) {
+            if (r.getMeasurementValue() == measurementValue
+                    && r.getRecordType().equals(recordType)
+                    && r.getTimestamp() == timestamp) {
+                return; // Duplicate found, do not add
+            }
+        }
         patient.addRecord(measurementValue, recordType, timestamp);
     }
 
@@ -83,6 +91,9 @@ public class DataStorage {
         return new ArrayList<>(patientMap.values());
     }
 
+    public void clear(){
+        patientMap.clear();
+    }
     /**
      * The main method for the DataStorage class.
      * Initializes the system, reads data into storage, and continuously monitors
@@ -93,7 +104,7 @@ public class DataStorage {
     public static void main(String[] args) {
         // DataReader is not defined in this scope, should be initialized appropriately.
         // DataReader reader = new SomeDataReaderImplementation("path/to/data");
-        DataStorage storage = new DataStorage();
+        DataStorage storage = DataStorage.getInstance();
 
         // Assuming the reader has been properly initialized and can read data into the
         // storage

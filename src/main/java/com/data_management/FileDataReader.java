@@ -3,15 +3,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class FileDataReader implements DataReader {
-
+public class FileDataReader  { //no longer implements the DataReader since DataReader was adapted to WebSocket from week 5
+// this would cause interface segragation otherwise
     private String path;
     public FileDataReader(String path){
         this.path = path;
     
     }
 
-    @Override
+    //@Override no longer overrides DataReader since DataReader was adapted to WebSocket streaming instead
     public void readData(DataStorage dataStorage){
         double measurementValue; String recordType; long timestamp; //patientId isn't declared as int since it will be the leading read line to determine EOF
         try{
@@ -34,7 +34,7 @@ public class FileDataReader implements DataReader {
             System.err.println("Error reading the file, please verify file path");
             e.printStackTrace();
         }
-
-
     }
+
+
 }

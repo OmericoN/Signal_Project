@@ -1,12 +1,10 @@
 package data_management;
 
-import java.io.IOException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-import com.data_management.DataReader;
 import com.data_management.DataStorage;
 import com.data_management.PatientRecord;
 
@@ -51,25 +49,26 @@ class DataStorageTest {
         assertEquals(0, nonExistentPatientRecords.size());
     }
 
-    @Test
-    void testWithMockDataReader() {
-        // Testing with mockreader to simulate behavior of the DataReader that I created
-        DataReader mockReader = new DataReader() {
-            @Override
-            public void readData(DataStorage storage) {
-                storage.addPatientData(1, 120.0, "SystolicPressure", 1000L);
-                storage.addPatientData(1, 80.0, "DiastolicPressure", 1100L);
-            }
-        };
-        // DataStorage storage = new DataStorage();   // No longer used because of singleton design pattern
-        DataStorage storage = DataStorage.getInstance();
-        try {
-            mockReader.readData(storage);
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("IOException occurred during mockReader.readData", e);
-        }
+    //This test is no longer needed since we dicontinue the readData() function from week 5
+//     @Test
+//     void testWithMockDataReader() {
+//         // Testing with mockreader to simulate behavior of the DataReader that I created
+//         DataReader mockReader = new DataReader() {
+//             @Override
+//             public void readData(DataStorage storage) {
+//                 storage.addPatientData(1, 120.0, "SystolicPressure", 1000L);
+//                 storage.addPatientData(1, 80.0, "DiastolicPressure", 1100L);
+//             }
+//         };
+//         // DataStorage storage = new DataStorage();   // No longer used because of singleton design pattern
+//         DataStorage storage = DataStorage.getInstance();
+//         try {
+//             mockReader.readData(storage);
+//         } catch (IOException e) {
+//             e.printStackTrace();
+//             throw new RuntimeException("IOException occurred during mockReader.readData", e);
+//         }
         
-        assertEquals(2, storage.getRecords(1, 0L, 2000L).size());
-}
+//         assertEquals(2, storage.getRecords(1, 0L, 2000L).size());
+// }
 }

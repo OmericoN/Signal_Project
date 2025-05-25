@@ -1,9 +1,9 @@
 package com.cardio_generator.outputs;
 
+import java.net.InetSocketAddress;
+
 import org.java_websocket.WebSocket;
 import org.java_websocket.server.WebSocketServer;
-
-import java.net.InetSocketAddress;
 
 public class WebSocketOutputStrategy implements OutputStrategy {
 
@@ -23,7 +23,10 @@ public class WebSocketOutputStrategy implements OutputStrategy {
             conn.send(message);
         }
     }
-
+    //terminates server port session
+    public void stop() throws Exception{
+        server.stop();
+    }
     private static class SimpleWebSocketServer extends WebSocketServer {
 
         public SimpleWebSocketServer(InetSocketAddress address) {
