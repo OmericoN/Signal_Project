@@ -13,6 +13,11 @@ public class BloodPressureStrategy implements AlertStrategy{
     static final double SYSTOLIC_PRESSURE_MIN = 90;
     static final double DIASTOLIC_PRESSURE_MAX = 120;
     static final double DIASTOLIC_PRESSURE_MIN = 60;
+    /**
+     * Checks the blood pressure levels of a patient and triggers alerts
+     * @param patient         The patient whose records are to be checked
+     * @param alertGenerator The alert generator to trigger alerts
+     */
     @Override
     public void checkAlert(Patient patient, AlertGenerator alertGenerator){
         List<PatientRecord> systolics = new ArrayList<>();

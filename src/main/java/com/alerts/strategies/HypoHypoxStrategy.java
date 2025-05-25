@@ -12,6 +12,13 @@ public class HypoHypoxStrategy implements AlertStrategy{
     static final double SYSTOLIC_PRESSURE_MIN = 90;
     static final double BLOOD_OXYGEN_SATURATION_MIN = 92;
 
+    /**
+     * Checks the blood pressure and blood oxygen saturation levels of a patient
+     * and triggers alerts if both are below critical thresholds.
+     *
+     * @param patient         The patient whose records are to be checked
+     * @param alertGenerator The alert generator to trigger alerts
+     */
     @Override
     public void checkAlert(Patient patient, AlertGenerator alertGenerator){
         List<PatientRecord> systolics = new ArrayList<>();

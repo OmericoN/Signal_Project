@@ -13,6 +13,10 @@ public class WebSocketClientReader extends WebSocketClient implements DataReader
     public WebSocketClientReader (URI serverUri){
         super(serverUri);
     }
+
+    /**
+     * Connects to the WebSocket server.
+     */
     @Override
     public void startStream(DataStorage dataStorage) throws IOException {
         this.dataStorage = dataStorage;

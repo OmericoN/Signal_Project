@@ -10,6 +10,12 @@ import com.data_management.PatientRecord;
 
 public class HeartRateStrategy implements AlertStrategy{
     
+
+    /**
+     * Checks the ECG readings of a patient and triggers alerts
+     * @param patient         The patient whose records are to be checked
+     * @param alertGenerator The alert generator to trigger alerts
+     */
     @Override
     public void checkAlert(Patient patient, AlertGenerator alertGenerator){
         List<PatientRecord> records = new ArrayList<>();

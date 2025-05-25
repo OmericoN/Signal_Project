@@ -10,6 +10,12 @@ import com.data_management.PatientRecord;
 public class BloodOxygenStrategy implements AlertStrategy {
     static final double BLOOD_OXYGEN_SATURATION_MIN = 92;
     static final double RAPID_DROP_THRESHOLD = 5;
+    /**
+     * Checks the blood oxygen saturation levels of a patient and triggers alerts
+     * 
+     * @param patient         The patient whose records are to be checked
+     * @param alertGenerator The alert generator to trigger alerts
+     */
     @Override
     public void checkAlert(Patient patient, AlertGenerator alertGenerator){
         List<PatientRecord> saturations = new ArrayList<>();

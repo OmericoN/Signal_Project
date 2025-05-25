@@ -66,6 +66,8 @@ public class AlertGenerator {
 
     }
 
+
+    // PLEASE NOTE: THE FOLLOWING METHODS ARE NO LONGER USED AND CONSIDERED DEAD CODE AFTER WEEK 4
     /**
      * Extends functionality of the evaluateData() method
      * Analyzes ECG data to detect abnormal readings
